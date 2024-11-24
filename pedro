@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name pedro;
+
+    root /var/www/pedro/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        # Configuración de autenticación básica
+        auth_basic "Área restringida";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+
+        # Permitir acceso a todos excepto a una IP específica
+        deny 192.168.57.1;
+        allow all;
+
+        # Manejo de rutas y errores
+        try_files $uri $uri/ =404;
+    }
+}

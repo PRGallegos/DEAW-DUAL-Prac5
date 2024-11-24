@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name perfectweb;
+
+    root /var/www/perfectweb/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    location / {
+        # Configuración de autenticación básica
+        auth_basic "Área restringida";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+
+        # Permitir acceso solo desde una IP específica
+        allow 192.168.57.1;
+        deny all;
+
+        # Manejo de rutas y errores
+        try_files $uri $uri/ =404;
+    }
+}
