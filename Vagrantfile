@@ -6,8 +6,6 @@ Vagrant.configure("2") do |config|
     pedro.vm.box = "debian/bookworm64"
     pedro.vm.network "private_network", ip: "192.168.57.103"
 
-    # Compartir carpeta actual con /vagrant en la VM
-    pedro.vm.synced_folder ".", "/vagrant"
 
     # Aprovisionamiento de la máquina
     pedro.vm.provision "shell", inline: <<-SHELL
